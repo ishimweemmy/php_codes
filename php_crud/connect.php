@@ -1,7 +1,9 @@
 <?php
-$con = new mysqli('localhost', 'root', '', 'php_crud');
 
-if(!$con){
-    die(mysqli_error($con));
+$connection = mysqli_connect('localhost', 'root', '', 'registry');
+
+if(!$connection) {
+    die(mysqlli_error($connection));
 }
+
 ?>

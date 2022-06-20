@@ -1,74 +1,122 @@
-<?php include "./connect.php" ?>
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
 
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="fonts/icomoon/style.css">
 
-     <style>
-        a{
-            color: white;
-        }
-        .buttons{
-          display: flex;
-          gap: 2rem;
-        }
-     </style>
-</head>
-<body>
-    <div class="container">
-        <button class='btn btn-primary'><a href="user.php">Add user</a></button>
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
 
-        <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Sl no</th>
-      <th scope="col">Name</th>
-      <th scope="col">Email</th>
-      <th scope="col">Mobile</th>
-      <th scope="col">Password</th>
-      <th scope="col">Operation</th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php
-    $sql = "select * from `users`";
-    $result = mysqli_query($con, $sql);
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    
+    <!-- Style -->
+    <link rel="stylesheet" href="css/style.css">
 
-    if($result) {
-        while($row = mysqli_fetch_assoc($result)){
-          $id = $row['id'];
-          $name = $row['name'];
-          $email = $row['email'];
-          $mobile = $row['mobile'];
-          $password = $row['password'];
-
-          echo "<tr>
-                  <th scope='row'>$id</th>
-                  <td>".$name."</td>
-                  <td>".$email."</td>
-                  <td>".$mobile."</td>
-                  <td>".$password."</td>
-                  <td class='buttons'>
-
-                    <button class='btn btn-primary'><a href='update.php?updateId=".$id."'>Update</a></button>
-
-                    <button class='btn btn-danger'><a href='delete.php?deleteId=".$id."'>Delete</a></button>
-
-                  </td>
-                </tr>";
-        }
+    <title>display</title>
+  </head>
+  <style>
+    .update{
+        background: magenta;
+        width: 8rem;
+        height: 2.5rem;
+        box-sizing: border-box;
+        border: none;
+        border-radius: .2rem;
+        color: white;
     }
-    ?>
-  </tbody>
-</table>
+
+    .delete{
+        background: red;
+        width: 8rem;
+        height: 2.5rem;
+        box-sizing: border-box;
+        border: none;
+        border-radius: .2rem;
+        color: white;
+    }
+     .buttons{
+        display: flex;
+        gap: 2rem;
+    }
+  </style>
+  <body>
+  
+
+  <div class="content">
+    
+    <div class="container">
+      <div class="table-responsive custom-table-responsive">
+
+        <table class="table custom-table">
+          <thead>
+            <tr>  
+
+              <th scope="col">
+                <label class="control control--checkbox">
+                  <input type="checkbox"  class="js-check-all"/>
+                  <div class="control__indicator"></div>
+                </label>
+              </th>
+              
+              <th scope="col">id</th>
+              <th scope="col">Username</th>
+              <th scope="col">email</th>
+              <th scope="col">password</th>
+              <th scope="col">update or delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php
+            
+            include "connect.php";
+
+            $sql = "SELECT * FROM `users`";
+            $result = mysqli_query($connection, $sql);
+
+            if($result){
+                while($row = mysqli_fetch_assoc($result)) {
+                    $id = $row['id'];
+                    $username = $row['username'];
+                    $email = $row['email'];
+                    $password = password_hash($row['password'], PASSWORD_DEFAULT);
+
+                    echo '<tr scope="row">
+                            <th scope="row">
+                                <label class="control control--checkbox">
+                                <input type="checkbox"/>
+                                <div class="control__indicator"></div>
+                                </label>
+                            </th>
+                            <td>
+                                '.$id.'
+                            </td>
+                            <td><a href="#">'.$username.'</a></td>
+                            <td>
+                                '.$email.'
+                            </td>
+                            <td>'.$password.'</td>
+                            <td class="buttons">
+                                <button class="update"><a href="update.php?updateId='.$id.'">Update</a></button>
+                                <button class="delete"><a href="delete.php?deleteId='.$id.'">Delete</a></button>
+                            </td>
+                        </tr>
+                <tr class="spacer"><td colspan="100"></td>
+                </tr>';
+                }
+            }
+            ?>
+          </tbody>
+        </table>
+      </div>
     </div>
-    <a href="">Update</a>
-    <a href=''>Delete</a>
-</body>
+  </div>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+  </body>
 </html>

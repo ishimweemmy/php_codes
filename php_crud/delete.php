@@ -1,15 +1,14 @@
 <?php
-include 'connect.php';
-if(isset($_GET['deleteId'])){
+include "connect.php";
+
+if(isset($_GET['deleteId'])) {
     $id = $_GET['deleteId'];
 
-    $sql = "delete from `users` where id=$id";
-    $result = mysqli_query($con, $sql);
+    $sql = "DELETE FROM `users` WHERE id = $id";
+    $result = mysqli_query($connection, $sql);
 
     if($result) {
-        header('location:display.php');
-    }else{
-        die(mysqli_error($con));
+        header("location:display.php");
     }
 }
 ?>
