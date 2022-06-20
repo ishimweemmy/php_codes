@@ -9,16 +9,16 @@
     <link rel="stylesheet" href="fonts/icomoon/style.css">
 
     <link rel="stylesheet" href="css/owl.carousel.min.css">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    
-    <!-- Style -->
     <link rel="stylesheet" href="css/style.css">
 
     <title>display</title>
   </head>
   <style>
+    *{
+      padding: 0;
+      box-sizing: border-box;
+      margin: 0;
+    }
     .update{
         background: magenta;
         width: 8rem;
@@ -42,6 +42,31 @@
         display: flex;
         gap: 2rem;
     }
+
+    td{
+      height: 7rem;
+      padding: 2rem;
+    }
+    .profile{
+      width: 10rem;
+      height: 100%;
+      background-color: yellow;
+    }
+    .profile div{
+      width: 4rem;
+      height: 4rem;
+      border-radius: 100%;
+      background: yellow
+    }
+    body{
+      width: 100vw;
+      display: grid;
+      place-items: center;
+    }
+    .img{
+      border-radius: 100%;
+      height: 100%;
+    }
   </style>
   <body>
   
@@ -50,19 +75,12 @@
     
     <div class="container">
       <div class="table-responsive custom-table-responsive">
-
         <table class="table custom-table">
           <thead>
-            <tr>  
-
-              <th scope="col">
-                <label class="control control--checkbox">
-                  <input type="checkbox"  class="js-check-all"/>
-                  <div class="control__indicator"></div>
-                </label>
-              </th>
-              
+            <tr>
+              <th scope="col"></th>
               <th scope="col">id</th>
+              <th scope="col">profile</th>
               <th scope="col">Username</th>
               <th scope="col">email</th>
               <th scope="col">password</th>
@@ -85,15 +103,11 @@
                     $password = password_hash($row['password'], PASSWORD_DEFAULT);
 
                     echo '<tr scope="row">
-                            <th scope="row">
-                                <label class="control control--checkbox">
-                                <input type="checkbox"/>
-                                <div class="control__indicator"></div>
-                                </label>
-                            </th>
+                            <th scope="row"></th>
                             <td>
                                 '.$id.'
                             </td>
+                            <td class="profile"><div><img class="img" width="100%" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"></div></td>
                             <td><a href="#">'.$username.'</a></td>
                             <td>
                                 '.$email.'
@@ -114,9 +128,9 @@
       </div>
     </div>
   </div>
-    <script src="js/jquery-3.3.1.min.js"></script>
+    <!-- <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/main.js"></script> -->
   </body>
 </html>
