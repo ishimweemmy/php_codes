@@ -9,7 +9,7 @@
 <body>
     <?php
 
-    include "calc.php";
+    include "auto_loader.php";
 
     if(isset($_POST['calculate'])) {
         $firstNumber = (int) $_POST['firstNumber'];
